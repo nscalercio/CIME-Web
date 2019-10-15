@@ -4,7 +4,6 @@
 
 <script>
   import Proyecto from "../components/Proyecto.svelte";
-
 </script>
 
 <style>
@@ -39,16 +38,16 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  hr{
-	  width:100%;
-	  border-color:var(--color-acento);
-	  background-color: var(--color-acento);
-	  margin: 1em;
+  hr {
+    width: 100%;
+    border-color: var(--color-acento);
+    background-color: var(--color-acento);
+    margin: 1em;
   }
-  h1{
-	  width: 100%;
-	  padding:0em 1em;
-	  color: var(--color-themeContraste);
+  h1 {
+    width: 100%;
+    padding: 0em 1em;
+    color: var(--color-themeContraste);
   }
 </style>
 
@@ -57,9 +56,7 @@
 </svelte:head>
 
 <div class="principal">
-<h1>
-   Quienes Somos
-  </h1>
+  <h1>Quienes Somos</h1>
   <img src="labo.jpg" alt="Laboratorio" />
   <p>
     El Centro Integral de Mantenimiento Electrónico
@@ -75,13 +72,11 @@
     que tengan como finalidad directa o indirecta, la mejora en el servicio que
     brinda la empresa.
   </p>
-  <hr>
-  <h1>
-   Proyectos
-  </h1>
+  <hr />
+  <h1>Proyectos</h1>
   <div class="proyectos">
     {#each proyectos as proyecto}
-      <Proyecto {...proyecto} />     
+      <Proyecto {...proyecto} />
     {/each}
   </div>
 </div>

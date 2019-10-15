@@ -18,24 +18,22 @@
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    cursor:pointer;
+    cursor: pointer;
     transition: all linear 0.5s;
     color: var(--color-blanco);
     text-decoration: none;
   }
-  .proyecto:hover{
-      background:var(--color-acento);
-     
-
+  .proyecto:hover {
+    background: var(--color-acento);
   }
   img {
     width: auto;
     height: 4em;
   }
   p {
-    font-size: 1.2em;  
-  
-    display:flex;
+    font-size: 1.2em;
+
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: justify;
