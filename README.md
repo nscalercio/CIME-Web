@@ -1,88 +1,47 @@
-# sapper-template
+# CIME WEB
 
-The default [Sapper](https://github.com/sveltejs/sapper) template, with branches for Rollup and webpack. To clone it and get started:
+Este proyecto esta realizado con Sapper.
 
-```bash
-# for Rollup
-npx degit "sveltejs/sapper-template#rollup" my-app
-# for webpack
-npx degit "sveltejs/sapper-template#webpack" my-app
-cd my-app
-npm install # or yarn!
-npm run dev
-```
+A diferencia del uso mas corriente de Sapper (Web dinamica mediante SSR), en este proyecto Sapper se utiliza unicamente como generador de archivos estaticos. 
 
-Open up [localhost:3000](http://localhost:3000) and start clicking around.
+De esta manera se asegura que la web este compuesta por archivos estaticos ligeros y de carga rapida, que pueden actualizarse y regenerarse de manera periodica (como si fuese un blog).
 
-Consult [sapper.svelte.dev](https://sapper.svelte.dev) for help getting started.
+## Agregado de un Proyecto
 
+Para agregar un proyecto solo se debera modificar el archivo \_proyectos.js que esta dentro de la carpeta routes.
 
-## Structure
+Dentro del archivo se encuentra un arreglo de objetos llamado "proyectos", para agregar un nuevo proyecto se debera agregar un nuevo objeto con la siguiente información:
 
-Sapper expects to find two directories in the root of your project —  `src` and `static`.
+- nombre -> Cadena de texto con el nombre completo del proyecto. _(Ej: "Proyecto X")_
 
+- showcase -> Arreglo con los nombres y extension de las imagenes que iran en el carrousel de la pagina del proyecto _(Ej: ["img1.png","img2.png"])_
 
-### src
+- tecnologias -> Arreglo con los nombres de las tecnologias utilizadas en el proyecto. _(Ej: ["JavaScript","SQL"])_
 
-The [src](src) directory contains the entry points for your app — `client.js`, `server.js` and (optionally) a `service-worker.js` — along with a `template.html` file and a `routes` directory.
+- estado -> Entero que representa el estado actual del proyecto, siendo 0="En desarrollo", 1="Prototipo en Pruebas", 2="Finalizado". _(Opcional)_
 
+- link -> Cadena con el link al sitio del proyecto, si lo tuviera. _(Ej: "http://proyecto1.com")_ _(Opcional)_
 
-#### src/routes
+- caracteristicas -> Arreglo de cadenas con las caracteristicas del proyecto. _(Ej: ["Caracteristica 1","Caracteristica 2"])_
 
-This is the heart of your Sapper app. There are two kinds of routes — *pages*, and *server routes*.
+- breve -> Cadena de texto con una descripción breve del proyecto que se muestra en el home.
 
-**Pages** are Svelte components written in `.svelte` files. When a user first visits the application, they will be served a server-rendered version of the route in question, plus some JavaScript that 'hydrates' the page and initialises a client-side router. From that point forward, navigating to other pages is handled entirely on the client for a fast, app-like feel. (Sapper will preload and cache the code for these subsequent pages, so that navigation is instantaneous.)
+- descripcion -> Descripción detallada mostrada en la pagina del proyecto. Esta cadena puede utilizar tags HTML que seran renderizados al generar la pagina. Se recomienda el uso del tag "strong" para dar enfasis en ciertas partes de la descripción, y el tag "break" para ingresar saltos de linea.
+  
+- logo -> Nombre y extensión del archivo del logo. _(Ej: "logoProyecto.svg")_
 
-**Server routes** are modules written in `.js` files, that export functions corresponding to HTTP methods. Each function receives Express `request` and `response` objects as arguments, plus a `next` function. This is useful for creating a JSON API, for example.
+Consideraciones: 
+- Debido a que el servidor corre en linux, los nombres de archivos son case-sensitive.
+- El campo de descripción no esta sanitizado, por ende, no ingresar tags html que puedan afectar el normal funcionamiento de la web. (Script tags, canvas, etc).
 
-There are three simple rules for naming the files that define your routes:
+## Ubicación de archivos
 
-* A file called `src/routes/about.svelte` corresponds to the `/about` route. A file called `src/routes/blog/[slug].svelte` corresponds to the `/blog/:slug` route, in which case `params.slug` is available to the route
-* The file `src/routes/index.svelte` (or `src/routes/index.js`) corresponds to the root of your app. `src/routes/about/index.svelte` is treated the same as `src/routes/about.svelte`.
-* Files and directories with a leading underscore do *not* create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `src/routes/_helpers/datetime.js` and it would *not* create a `/_helpers/datetime` route
+Una vez ingresado un nuevo proyecto, se deben guardar los archivos estaticos correspondientes en las siguientes ubicaciones:
 
+- Logos: El logo del proyecto va guardado en el directorio static/logos. Como nombre se recomienda simplemente el nombre del proyecto y la extension. _(Ej: proyectoX.svg)_
 
-### static
+- Showcase: Las imagenes que correspondan al carrousel deben ir guardadas en el directorio static/carrousel. Como nombre se recomienda simplemente el nombre del proyecto y un numero a modo de indice. _(Ej: proyectoX1.png, proyectoX2.png, etc)_
 
-The [static](static) directory contains any static assets that should be available. These are served using [sirv](https://github.com/lukeed/sirv).
+## Generación de archivos estaticos
 
-In your [service-worker.js](app/service-worker.js) file, you can import these as `files` from the generated manifest...
-
-```js
-import { files } from '@sapper/service-worker';
-```
-
-...so that you can cache them (though you can choose not to, for example if you don't want to cache very large files).
-
-
-## Bundler config
-
-Sapper uses Rollup or webpack to provide code-splitting and dynamic imports, as well as compiling your Svelte components. With webpack, it also provides hot module reloading. As long as you don't do anything daft, you can edit the configuration files to add whatever plugins you'd like.
-
-
-## Production mode and deployment
-
-To start a production version of your app, run `npm run build && npm start`. This will disable live reloading, and activate the appropriate bundler plugins.
-
-You can deploy your application to any environment that supports Node 8 or above. As an example, to deploy to [Now](https://zeit.co/now), run these commands:
-
-```bash
-npm install -g now
-now
-```
-
-
-## Using external components
-
-When using Svelte components installed from npm, such as [@sveltejs/svelte-virtual-list](https://github.com/sveltejs/svelte-virtual-list), Svelte needs the original component source (rather than any precompiled JavaScript that ships with the component). This allows the component to be rendered server-side, and also keeps your client-side app smaller.
-
-Because of that, it's essential that the bundler doesn't treat the package as an *external dependency*. You can either modify the `external` option under `server` in [rollup.config.js](rollup.config.js) or the `externals` option in [webpack.config.js](webpack.config.js), or simply install the package to `devDependencies` rather than `dependencies`, which will cause it to get bundled (and therefore compiled) with your app:
-
-```bash
-npm install -D @sveltejs/svelte-virtual-list
-```
-
-
-## Bugs and feedback
-
-Sapper is in early development, and may have the odd rough edge here and there. Please be vocal over on the [Sapper issue tracker](https://github.com/sveltejs/sapper/issues).
+Si bien la pagina se generara mediante CI / CD de manera automatica, si se desea generar de manera manual los archivos, se debera correr el comando *npm run export*.
