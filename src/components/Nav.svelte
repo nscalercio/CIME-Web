@@ -1,5 +1,5 @@
 <script>
-  export let segment;  
+  export let segment;
 </script>
 
 <style>
@@ -56,13 +56,13 @@
     background: rgba(0, 0, 0, 0.9);
     padding: 0.5em 0.2em;
     border-radius: 1em;
+    border: 0.1em solid var(--color-acento);
   }
   .button {
     color: var(--color-themeContraste);
     text-decoration: none;
     font-weight: bold;
     margin: 0em 0.9em;
-    border: 0.1em solid var(--color-acento);
     display: flex;
     justify-content: center;
     align-items: space-evenly;

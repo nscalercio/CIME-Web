@@ -38,6 +38,7 @@ const proyectos = [
       "Sistema de Logs y Diagnostico permanente",
       "Pipeline CI /CD para desarrollo e implementación continua."
     ],
+    estado:2,
     tecnologias: ["NodeJS", "SQL", "SMTP", "JavaScript", "Github", "Docker"],
     breve:
       "Backend que provee los servicios necesarios para el funcionamiento de todas las aplicaciónes informaticas del CIME.",

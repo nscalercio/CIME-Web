@@ -1,8 +1,9 @@
 <script>
-  export let nombre;
-  export let breve;
-  export let logo;
-  export let id;
+  export let proyecto;
+  $: nombre = proyecto.nombre;
+  $: breve = proyecto.breve;
+  $: logo = proyecto.logo;
+  $: id = proyecto.id;
 </script>
 
 <style>
