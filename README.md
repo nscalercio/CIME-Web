@@ -6,6 +6,8 @@ A diferencia del uso mas corriente de Sapper (Web dinamica mediante SSR), en est
 
 De esta manera se asegura que la web este compuesta por archivos estaticos ligeros y de carga rapida, que pueden actualizarse y regenerarse de manera periodica (como si fuese un blog).
 
+Para mas info sobre Sapper: https://sapper.svelte.dev/
+
 ## Agregado de un Proyecto
 
 Para agregar un proyecto solo se debera modificar el archivo \_proyectos.js que esta dentro de la carpeta routes.
