@@ -52,10 +52,9 @@
   {#each images as image}
     {#if index == image.index}
       <img
-        transition:scale={{ duration: 600, easing: quintOut }}
+        transition:scale|local={{ duration: 600, easing: quintOut }}
         src={image.src}
         alt={image.src} />
     {/if}
   {/each}
-
 </div>

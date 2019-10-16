@@ -14,6 +14,10 @@
     border-radius: 10em;
     text-decoration: none;
     color: white;
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
   }
   a {
     cursor: pointer;

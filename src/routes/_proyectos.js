@@ -10,7 +10,7 @@ const proyectos = [
       "Reportes via email del estado del servicio (periodicos y a demanda)"
     ],
     estado: 2,
-    link: "http://laboweb.us.to:3030/ce/",
+    link: "/ce/",
     tecnologias: [
       "NodeJS",
       "SQL",

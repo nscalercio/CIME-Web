@@ -7,6 +7,8 @@
 </script>
 
 <script>
+  import { fade } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
   import PastillaEstado from "../components/PastillaEstado.svelte";
   import Slideshow from "../components/Slideshow.svelte";
   import Tecnologia from "../components/Tecnologia.svelte";
@@ -103,13 +105,13 @@
   <title>{`CIME Metrovias - ${nombre}`}</title>
 </svelte:head>
 
-<div class="principal">
+<div class="principal" in:fade|local={{ duration: 300, easing: quintOut }}>
   <div class="hero">
     <img class="logo" src={`logos/${logo}`} alt={logo} />
     <p class="descripcion">
       {@html descripcion}
     </p>
-    {#if estado!=undefined}
+    {#if estado != undefined}
       <PastillaEstado {estado} {link} />
     {/if}
   </div>

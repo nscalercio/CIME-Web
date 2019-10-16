@@ -78,12 +78,12 @@
   <a class="logoCIME" href="/">
     <img alt="Logo CIME" src="cimeWhite.svg" />
   </a>
-  <div class="links">
-    {#if segment}
+  {#if segment}
+    <div class="links">
       <a class="button" href="/">
         <img src="icons/home-24px.svg" alt="Home" />
         HOME
       </a>
-    {/if}
-  </div>
+    </div>
+  {/if}
 </nav>
